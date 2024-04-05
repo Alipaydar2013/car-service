@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin page</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.9.0/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-screen flex flex-col justify-center items-center bg-sky-500">
+    <div
+      class="w-3/4 grid grid-cols-2 gap-2 shadow p-2 rounded-lg bg-white"
+    >
+      <button class="btn btn-neutral" onclick="create_serivce.showModal()">
+        Create Servies
+      </button>
+      <button class="btn btn-neutral" onclick="create_vehicle.showModal()">
+        Create Vehicles
+      </button>
+      <div class="col-span-2">
+        <h2 class="text-center text-3xl font-bold mt-8">Appointment check table</h2>
+        <table class="table text-center w-full">
+            <thead>
+                <tr>
+                    <th>full_name</th>
+                    <th>phone_number</th>
+                    <th>service_description</th>
+                    <th>service</th>
+                    <th>vehicle</th>
+                    <th>vehicle year</th>
+                    <th>appointment_date</th>
+                    <th>tracking_code</th>
+                    <th>status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                    <tr>
+                        <td>{{appointment.full_name}}</td>
+                        <td>{{appointment.phone_number}}</td>
+                        <td>{{appointment.service_description}}</td>
+                        <td>{{appointment.service.name}}</td>
+                        <td>{{appointment.vehicle.model}}</td>
+                        <td>{{appointment.vehicle.year}}</td>
+                        <td>{{appointment.appointment_date}}</td>
+                        <td>{{appointment.tracking_code}}</td>
+                        <td>{{appointment.status}}</td>
+                        <td>
+                            {% if appointment.status == "Pending" %}
+                                <div class="flex gap-2">
+                                    <a href="/confirmation/{{appointment.tracking_code}}" class="btn btn-success">Approved</a>
+                                    <a href="/denied/{{appointment.tracking_code}}" class="btn btn-error">Denied</a>
+                                </div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+
+    <dialog id="create_serivce" class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">Create Servies!</h3>
+        <div class="py-4">
+          <form
+            action="/service/create"
+            method="POST"
+            class="flex flex-col space-y-4"
+          >
+            <div class="form-group">
+              <label for="name">name service:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="input input-bordered w-full"
+                required
+              />
+            </div>
+            <div class="form-group">
+                <label for="description">description service:</label>
+                <input
+                  type="text"
+                  id="description"
+                  name="description"
+                  class="input input-bordered w-full"
+                  required
+                />
+              </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-neutral w-full">
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="create_vehicle" class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">Create Vehicles!</h3>
+        <div class="py-4">
+            <form
+            action="/vehicle/create"
+            method="POST"
+            class="flex flex-col space-y-4"
+          >
+            <div class="form-group">
+              <label for="model">model vehicle:</label>
+              <input
+                type="text"
+                id="model"
+                name="model"
+                class="input input-bordered w-full"
+                required
+              />
+            </div>
+            <div class="form-group">
+                <label for="year">year vehicle:</label>
+                <input
+                  type="text"
+                  id="year"
+                  name="year"
+                  class="input input-bordered w-full"
+                  required
+                />
+              </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-neutral w-full">
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

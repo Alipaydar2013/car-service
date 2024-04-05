@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>رزرو خدمات خودرو</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.9.0/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-screen flex flex-col justify-center items-center bg-sky-500">
+    <div class="w-[55rem] shadow p-2 rounded-lg bg-white">
+      <header>
+        <div class="container">
+          <h1>رهگیری خودرو</h1>
+        </div>
+      </header>
+      <section class="main-content">
+        <div class="container">
+          <form action="/tracking" method="POST">
+            <label for="tracking_code">کد رهگیری:</label>
+            <input
+              type="text"
+              id="tracking_code"
+              name="tracking_code"
+              required
+            />
+            <input type="submit" value="رهگیری" />
+          </form>
+        </div>
+      </section>
+      <footer>
+        <div class="container">
+          <p>&copy; ۲۰۲۴ خدمات خودرو</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

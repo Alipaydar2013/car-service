@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رزرو خدمات خودرو</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/daisyui@4.9.0/dist/full.min.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-screen flex flex-col justify-center items-center bg-sky-500">
+    <div class="w-[55rem] shadow p-2 rounded-lg bg-white">
+        <h2 class="text-center text-3xl font-bold">رزرو خدمات خودرو</h2>
+        <form action="/appointments" method="POST" class="flex flex-col space-y-4">
+            <div class="form-group">
+                <label for="full_name">نام و نام خانوادگی:</label>
+                <input type="text" id="full_name" name="full_name" required class="input input-bordered w-full">
+            </div>
+            <div class="form-group">
+                <label for="phone_number">شماره تماس:</label>
+                <input type="tel" id="phone_number" name="phone_number" required class="input input-bordered w-full">
+            </div>
+            <div class="form-group">
+                <label for="model">مدل خودرو:</label>
+                <select id="model" name="vehicle_id" required class="select select-bordered w-full">
+                    <option value=""></option>
+                    {% for vehicle in vehicles %}
+                    <option value="{{ vehicle.id }}">{{ vehicle.model }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="service">نوع خدمات خودرو:</label>
+                <select id="service" name="service_id" required class="select select-bordered w-full">
+                    <option value=""></option>
+                    {% for service in services %}
+                    <option value="{{ service.id }}">{{ service.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="year">سال ساخت خودرو:</label>
+                <input type="number" id="year" name="year" required class="input input-bordered w-full">
+            </div>
+            <div class="form-group">
+                <label for="warranty_code">کد گارانتی:</label>
+                <input type="text" id="warranty_code" name="warranty_code" required class="input input-bordered w-full">
+            </div>
+            <div class="form-group">
+                <label for="service_description">شرح خدمات:</label>
+                <textarea id="service_description" name="service_description" required class="input input-bordered w-full"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="appointment_date">زمان مراجعه:</label>
+                <input type="date" id="appointment_date" name="appointment_date" required class="input input-bordered w-full">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-neutral w-full">ثبت رزرو</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

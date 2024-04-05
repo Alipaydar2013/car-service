@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>confirmation page</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.9.0/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-screen flex flex-col justify-center items-center bg-sky-500">
+    <div class="w-3/4 shadow p-2 rounded-lg bg-white">
+      <section class="main-content text-center">
+        <div class="container space-y-8">
+          <p class="text-4xl text-green-500">رزرو خدمات با موفقیت انجام شد.</p>
+          <p class="text-xl font-bold">کد رهگیری: {{ tracking_code }}</p>
+          <a href="/" class="btn w-full btn-neutral">بازگشت به صفحه اصلی</a>
+        </div>
+      </section>
+      <footer>
+        <div class="container">
+          <p>&copy; ۲۰۲۴ خدمات خودرو</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
